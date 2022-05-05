@@ -14,8 +14,10 @@ export default function Detail({ characters = [] }) {
   }, [id]);
   return (
     <>
-      <h1>Character {id}</h1>
-      <h3>{character.name}</h3>
+      <h1>{character.name}</h1>
+      <h3>{character.status}</h3>
+      <h5>{character.species}</h5>
+      <img src={character.image} />
     </>
   );
 }
