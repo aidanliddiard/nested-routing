@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link, useRouteMatch } from 'react-router-dom';
+import Detail from './Detail';
 
 export default function List() {
+  const { url, path } = useRouteMatch();
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,11 +26,15 @@ export default function List() {
         <ul>
           {characters.map((character) => (
             <li key={character.id}>
-              <Link to={`/characters/${character.id}`}>{character.name}</Link>
+              <Link to={`${url}/${character.id}`}>{character.name}</Link>
             </li>
           ))}
         </ul>
       )}
+
+      <Route path={`${path}/:id`}>
+        <Detail />
+      </Route>
     </>
   );
 }
