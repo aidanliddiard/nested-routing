@@ -23,18 +23,19 @@ export default function List() {
       {loading ? (
         <p>Loading characters...</p>
       ) : (
-        <ul>
-          {characters.map((character) => (
-            <li key={character.id}>
-              <Link to={`${url}/${character.id}`}>{character.name}</Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul>
+            {characters.map((character) => (
+              <li key={character.id}>
+                <Link to={`${url}/${character.id}`}>{character.name}</Link>
+              </li>
+            ))}
+          </ul>
+          <Route path={`${path}/:id`}>
+            <Detail characters={characters} />
+          </Route>
+        </>
       )}
-
-      <Route path={`${path}/:id`}>
-        <Detail />
-      </Route>
     </>
   );
 }
